@@ -2,8 +2,12 @@ const express = require('express');
 const router = express.Router();
 const db = require('../../db/db');
 const pgp = require('pg-promise')();
-const db2 = pgp('postgres://ceg@localhost:5432/auth_p2');
+
+var dblink = process.env.DATABASE_URL || 'postgres://ceg@localhost:5432/auth_p2';
+const db2 = pgp(dblink);
 const pry = require('pryjs')
+
+
 
 router.post('/create', db.create_book, function (req, res) {
   if(res.error){

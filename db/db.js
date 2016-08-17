@@ -1,5 +1,6 @@
 const pgp = require('pg-promise')();
-const db = pgp('postgres://ceg@localhost:5432/auth_p2');
+var dblink = process.env.DATABASE_URL || 'postgres://ceg@localhost:5432/auth_p2';
+const db = pgp(dblink);
 
 const bcrypt = require('bcrypt');
 const salt = bcrypt.genSalt(10);
